@@ -44,9 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
   //   });
   // }
 
-  //변경 : int 변수 (Inherited_Widget에서 가져다 씀), setState 불필요 (AppState에서 setState를 갖는 함수 호출)
+  //변경 : int 변수 (Inherited_Widget에서 가져다 씀), setState 불필요 (StfulContainerState에서 setState를 갖는 함수 호출)
   int? _counter;
-  AppState? state;
+  StfulContainerState? state;
 
   @override
   void initState() {
@@ -57,8 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    state = StfulContainer.of(context, "_MyHomePageState - didChangeDependencie");
-    _counter = state?.count;
+    state = StfulContainer.of(context, "_MyHomePageState")!;
+    _counter = state!.count;
+  }
+
+  void _incrementCounter() {
+    state?.addCount();
   }
 
   @override
@@ -75,14 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${StfulContainer.of(context,"Text").count}',
+              '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=>state?.addCount(1),
+        onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
