@@ -75,14 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${StfulContainer.of(context,"Text").count}',
+              '${StfulContainer.of(context,"Text")?.count}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=>state?.addCount(1),
+        onPressed: ()=>state?.addCount(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
