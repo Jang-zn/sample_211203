@@ -10,19 +10,19 @@ class StfulContainer extends StatefulWidget {
   const StfulContainer({Key? key, required this.child}) : super(key: key);
   final Widget child;
   @override
-  StfulContainerState createState() => StfulContainerState();
+  AppState createState() => AppState();
 
   //Inherited_Widget의 참조를 위한 .of(context) 메소드
   //하위 위젯에서 Inherited_Widget의 State를 공유하고, 참조하기 위한 메소드임.
   //String name은 예시를 위해 사용
-  static StfulContainerState? of(BuildContext context, String name){
+  static AppState? of(BuildContext context, String name){
     print("$name 에서 InheritedWidget을 참조합니다");
     return context.dependOnInheritedWidgetOfExactType<Inherited_Widget>()?.appState;
   }
 }
 
 
-class StfulContainerState extends State<StfulContainer> {
+class AppState extends State<StfulContainer> {
 
   late int count;
 
