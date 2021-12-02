@@ -10,46 +10,44 @@ class StfulContainer extends StatefulWidget {
   const StfulContainer({Key? key, required this.child}) : super(key: key);
   final Widget child;
   @override
-  AppState createState() => AppState();
+  StfulContainerState createState() => StfulContainerState();
 
   //Inherited_Widget의 참조를 위한 .of(context) 메소드
   //하위 위젯에서 Inherited_Widget의 State를 공유하고, 참조하기 위한 메소드임.
   //String name은 예시를 위해 사용
-  static AppState of(BuildContext context, String name){
-    print("of() method : $name 에서 InheritedWidget-AppState을 참조합니다");
-    return context.dependOnInheritedWidgetOfExactType<Inherited_Widget>()!.appState;
+  static StfulContainerState? of(BuildContext context, String name){
+    print("$name 에서 InheritedWidget을 참조합니다");
+    return context.dependOnInheritedWidgetOfExactType<Inherited_Widget>()?.appState;
   }
 }
 
 
-class AppState extends State<StfulContainer> {
+class StfulContainerState extends State<StfulContainer> {
+
+  late int count;
 
   @override
   void initState() {
     count = 0;
-    buildtime = DateTime.now();
+  }
+
+  void addCount(){
+    setState(() {
+      print("addCount");
+      count++;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("InheritedWidget AppState Build");
-    print("build : $buildtime");
-
+    print("InheritedWidget State Build");
     //build 메소드를 통해 Inherited_Widget을 갱신
     return Inherited_Widget(
       child : widget.child, //앱 전체(myApp)
-      appState : this, //자기 자신 (AppState)
+      appState : this, //자기 자신 (_StfulcontainerState)
     );
   }
 
-  late int count;
-  late DateTime buildtime;
-  void addCount(int? num){
-    setState(() {
-      print("addCount 실행  - AppState setState");
-      count+=num!;
-      buildtime = DateTime.now();
-    });
-  }
-}
 
+
+}
