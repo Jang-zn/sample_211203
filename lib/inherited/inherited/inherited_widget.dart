@@ -8,21 +8,22 @@ import 'package:sample_211203/inherited/inherited/stful_widget.dart';
 class Inherited_Widget extends InheritedWidget{
 
   //StfulWidget의 appState를 property로 가지고 있음
-  final StfulContainerState appState;
+  final AppState appState;
 
   Inherited_Widget({
     Key? key,
     required this.appState,
     required child,
-  }):super(key:key, child:child);
+  }):super(key:key, child:child);//TODO
 
 
   //InheritedWidget이 build() 될때마다 appState가 갱신되는데,
   //이때 기존에 갖고있던 appState와 비교해서 같으면?? (true를 return)
   //fultter 내부적으로 appState를 참조하는 하위 위젯들에서 didUpdateDependencies() 실행시켜 재 빌드되도록 함
+  //TODO
   @override
   bool updateShouldNotify(covariant Inherited_Widget oldWidget) {
-    return oldWidget.appState==this.appState;
+    return oldWidget.appState.count==this.appState.count;
   }
 
 
